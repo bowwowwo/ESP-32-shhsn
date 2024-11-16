@@ -19,6 +19,6 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 ```C++
 void loop(){
 lcd.setCursor(0, 0);
-lcd.write(" ");
+lcd.print(" ");
 }
 ```
