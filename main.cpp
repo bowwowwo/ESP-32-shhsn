@@ -4,51 +4,75 @@
 #define SDA 21
 #define SCL 47
 
+int randX;
+int randY;
+int randZ;
+int randomClearX;
+int randomClearY;
+
+unsigned long previousMillis = 0UL;
+unsigned long interval = 1000UL;
+
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-int lcd1 = 0;
-int lcd2 = 0;
-
-void lcded()
+void random1()
 {
-  for (int i = 0; i < 17; i++)
-  {
-    lcd.setCursor(i, lcd2);
-    if ((i % 2) == 0)
+    randX = random(0, 16);
+    randY = random(0, 1);
+    randZ = random(1, 5);
+    randomClearX = random(0, 16);
+    randomClearY = random(0, 1);
+}
+void spellbook()
+{
+    lcd.setCursor(randX, randY);
+    switch (randZ)
     {
-      lcd.print("#");
+    case 1:
+        lcd.print("@");
+        break;
+    case 2:
+        lcd.print("#");
+        break;
+    case 3:
+        lcd.print("$");
+        break;
+    case 4:
+        lcd.print("%");
+        break;
+    case 5:
+        lcd.print("&");
+        break;
     }
-    else
-    {
-      lcd.print("%");
-    }
-    delay(70);
-  }
-  for (int i = 0; i < 17; i++)
-  {
-    lcd.setCursor(i, lcd2);
+}
+
+void clearbook()
+{
+    lcd.setCursor(randomClearX, randomClearY);
     lcd.print(" ");
-    delay(70);
-  }
 }
 
 void setup()
 {
-  Serial.begin(9600);
-  Serial.println("1");
-  pinMode(15, OUTPUT);
+    Serial.begin(9600);
+    Serial.println("1");
+    pinMode(15, OUTPUT);
 
-  lcd.init(SDA, SCL);
-  lcd.backlight();
+    lcd.noCursor();
+    lcd.init(SDA, SCL);
+    lcd.backlight();
+    lcd.setContrast(127);
 }
 
 void loop()
 {
-  lcd.setCursor(0, 0);
-  digitalWrite(15, 1);
+    unsigned long currentMillis = millis();
 
-  lcded();
-  lcd2++;
-  lcded();
-  lcd2 = 0;
+    random1();
+    spellbook();
+    if (currentMillis - previousMillis > interval)
+    {
+        clearbook();
+    }
+    delay(100);
 }
