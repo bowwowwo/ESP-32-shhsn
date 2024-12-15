@@ -1,1 +1,1 @@
-# 1$ esp32
+# piezo capsules passive(I think?) buzzers
