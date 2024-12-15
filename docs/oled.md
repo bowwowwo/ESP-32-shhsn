@@ -7,7 +7,7 @@
 #define SCREEN_WIDTH 128 // resolution of screen 128x64px
 #define SCREEN_HEIGHT 64
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1); // default wire pins 21, 22
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1); // default wire pins SDA 21,SCL 22
 ```
 ## hello world code
 ```C++
