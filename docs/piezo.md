@@ -10,7 +10,5 @@ void setup()
 ```
 ### smn
 ```C++
-digitalWrite(buzzer, HIGH);
-delay(1);
-digitalWrite(buzzer, LOW);
+tone(buzzer, note, melodyDuration); //note ex. NOTE_C7 // check pitches.h
 ```
