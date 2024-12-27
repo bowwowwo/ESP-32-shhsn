@@ -8,11 +8,11 @@
 #define SCL 47
 ```
 ```C++
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal_I2C lcd(0x27, 16, 2); // 21, 22
 ```
 ```C++
  void setup(){
-  lcd.init(SDA, SCL);
+  lcd.init();
   lcd.backlight();
 }
 ```
